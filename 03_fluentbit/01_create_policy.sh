@@ -12,7 +12,7 @@ cat <<EoF > ~/environment/logging/fluent-bit-policy.json
 "es:ESHttp*"
 ],
 "Resource":
-"arn:aws:es:${AWS_REGION}:${ACCOUNT_ID}:domain/${ES_DOMAIN_NAME}/*",
+"arn:aws:es:${AWS_REGION}:${AWS_ACCOUNT_ID}:domain/${ES_DOMAIN_NAME}/*",
 "Effect": "Allow"
 }
 ]

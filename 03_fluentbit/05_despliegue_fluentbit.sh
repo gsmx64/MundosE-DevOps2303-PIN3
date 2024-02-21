@@ -1,7 +1,7 @@
 #!/bin/bash
 
-export FLUENTBIT_ROLE=$(eksctl get iamserviceaccount --cluster ${CLUSTER_NAME} --namespace logging -o json | jq '.[].status.roleARN' -r) 
-export ES_ENDPOINT=$(aws es describe-elasticsearch-domain --domain-name ${ES_DOMAIN_NAME} --output text --query "DomainStatus.Endpoint")
+export FLUENTBIT_ROLE=$(eksctl get iamserviceaccount --cluster ${EKSCTL_CLUSTER_NAME} --namespace logging -o json | jq '.[].status.roleARN' -r) 
+export ES_ENDPOINT=$(aws es describe-elasticsearch-domain --domain-name ${EKSCTL_CLUSTER_NAME} --output text --query "DomainStatus.Endpoint")
 
 
 curl -sS -u "${ES_DOMAIN_USER}:${ES_DOMAIN_PASSWORD}" \

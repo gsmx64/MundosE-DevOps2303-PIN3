@@ -1,33 +1,38 @@
 #!/bin/bash
 
-# Variables
-CLUSTER_NAME=mundoes-cluster-G6
-AWS_REGION=us-east-2
+# Variables moved to .env
+# CLUSTER_NAME="mundoes-cluster-G19"
+# AWS_REGION="us-east-1"
+# AWS_ZONES="us-east-1a,us-east-1b,us-east-1c"
+source ../.env
 
-# Set AWS credentials 
+# Set AWS credentials.
 aws sts get-caller-identity >> /dev/null
 if [ $? -eq 0 ]
 then
-  echo "Credenciales testeadas, proceder con la creacion de cluster."
+  echo "Tested credentials, proceeding with cluster creation."
 
-  # Creacion de cluster
+  # Cluster creation.
   eksctl create cluster \
-  --name $CLUSTER_NAME \
-  --region $AWS_REGION \
-  --nodes 3 \
-  --node-type t2.small \
+  --name "$EKSCTL_CLUSTER_NAME" \
+  --version "$EKSCTL_VERSION" \
+  --region "$AWS_REGION" \
+  --zones "$AWS_ZONES" \
+  --managed \
+  --nodegroup-name $EKSCTL_NODEGROUP_NAME \
+  --nodes $EKSCTL_NODES \
+  --node-type $EKSCTL_NODE_TYPE \
   --with-oidc \
   --ssh-access \
-  --ssh-public-key jenkins \
-  --managed \
-  --full-ecr-access \
-  --zones us-east-2a,us-east-2b,us-east-2c
+  --ssh-public-key $EKSCTL_SSH_PUBLIC_KEY \
+  --full-ecr-access
+  
 
   if [ $? -eq 0 ]
   then
-    echo "Cluster Setup Completo con eksctl ."
+    echo "Cluster setup completed successfully with eksctl."
   else
-    echo "Cluster Setup Falló mientras se ejecuto eksctl."
+    echo "The cluster setup failed while eksctl runs."
   fi
 else
   echo "Please run aws configure & set right credentials."
