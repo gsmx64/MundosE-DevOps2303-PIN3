@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Loading variables from .env file
+source ../.env
+
 # Instalar Prometheus y Grafana usnado Helm (Manejador de paquetes para kubernetes)
 
 # Agregar repo de prometheus
@@ -22,4 +26,4 @@ helm install prometheus prometheus-community/prometheus \
 kubectl get all -n prometheus
 
 # Exponer prometheus en la instancia de EC2 en el puerto 8080
-kubectl port-forward -n prometheus deploy/prometheus-server 8080:9090 --address 0.0.0.0
+kubectl port-forward -n prometheus deploy/prometheus-server $PROMETHEUS_PUBLIC_PORT:9090 --address 0.0.0.0

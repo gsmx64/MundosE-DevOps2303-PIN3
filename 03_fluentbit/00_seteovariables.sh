@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Loading variables from .env file
 source ../.env
 
 # Moved all to .env
