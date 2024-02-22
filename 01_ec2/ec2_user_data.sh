@@ -118,7 +118,7 @@ echo " > Verifying the Helm version."
 helm version | cut -d + -f 1
 
 echo "-------------------------------------------------"
-echo "Installing terraform "
+echo "Installing terraform"
 echo "-------------------------------------------------"
 echo " "
 sudo yum install -y yum-utils shadow-utils
