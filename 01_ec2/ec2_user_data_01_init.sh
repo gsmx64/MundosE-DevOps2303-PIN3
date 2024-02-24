@@ -4,11 +4,11 @@
 source $PWD/.env
 
 echo " > Updating the system."
-yum update -y
+sudo yum update -y
 sleep 4
 echo " > Installing the required openssl package."
 sudo yum list available openssl
-yum update -y openssl
+sudo yum update -y openssl
 openssl version
 sleep 4
 
@@ -17,3 +17,5 @@ cat <<EOF | tee ~/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem > /dev/null
 $AWS_EC2_PEM
 EOF
 ssh-keygen -y -f ~/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem > ~/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pub
+sudo chmod 400 ~/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem
+sudo chmod 400 ~/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pub
