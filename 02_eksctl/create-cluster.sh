@@ -21,12 +21,15 @@ then
   --managed \
   --nodegroup-name $EKSCTL_NODEGROUP_NAME \
   --nodes $EKSCTL_NODES \
-  --node-type $EKSCTL_NODE_TYPE \
+  --node-type $AWS_EC2_INSTANCE \
   --with-oidc \
   --ssh-access \
   --ssh-public-key $EKSCTL_SSH_PUBLIC_KEY \
   --full-ecr-access
   
+  # Deploy nginx
+
+  kubectl apply -f nginx-deployment.yaml
 
   if [ $? -eq 0 ]
   then
