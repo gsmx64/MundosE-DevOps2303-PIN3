@@ -4,6 +4,8 @@
 # CLUSTER_NAME="mundoes-cluster-G19"
 # AWS_REGION="us-east-1"
 # AWS_ZONES="us-east-1a,us-east-1b,us-east-1c"
+
+# Loading variables from .env file
 source ../.env
 
 # Set AWS credentials.

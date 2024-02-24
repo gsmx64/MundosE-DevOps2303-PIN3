@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Loading variables from .env file
+source ../.env
+
 echo " > Download EKS CLI https://github.com/weaveworks/eksctl."
 PLATFORM=$(uname -s)_amd64
 curl -sLO "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"

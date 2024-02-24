@@ -1,3 +1,4 @@
+# Loading variables from .env file
 source ../.env
 
 kubectl create namespace grafana

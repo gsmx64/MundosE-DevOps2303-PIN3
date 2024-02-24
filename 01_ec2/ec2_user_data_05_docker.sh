@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Loading variables from .env file
+source ../.env
+
 echo " > Installing docker."
 sudo yum install -y docker
 echo " > Creating the docker user and group."
