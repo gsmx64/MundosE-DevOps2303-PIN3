@@ -54,9 +54,9 @@ echo " > Applying execute permissions to the binary."
 chmod +x ./kubectl
 echo " > Copying the binary to a folder in your PATH."
 # Modified to use official steps: mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$HOME/bin:$PATH
-echo " > Add the \$HOME/bin path to the shell initialization file."
-echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+mkdir -p $LOCAL_USER_HOME/bin && cp ./kubectl $LOCAL_USER_HOME/bin/kubectl && export PATH=$LOCAL_USER_HOME/bin:$PATH
+echo " > Add the \$LOCAL_USER_HOME/bin path to the shell initialization file."
+echo 'export PATH=$PATH:$LOCAL_USER_HOME/bin' >> ~/.bashrc
 echo " > Verifying the kubectl version."
 kubectl version --client
 sleep 4
@@ -66,7 +66,10 @@ echo " > Installing eksctl"
 echo "-------------------------------------------------"
 echo " "
 echo " > Download EKS CLI https://github.com/weaveworks/eksctl."
-curl -sLO "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xzf -C /tmp
+PLATFORM=$(uname -s)_amd64
+curl -sLO "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+echo " > Extract the downloaded file."
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
 echo " > Move the extracted binary to /usr/local/bin."
 sudo mv /tmp/eksctl /usr/local/bin
 echo " > Apply execute permissions to the binary."
@@ -84,9 +87,9 @@ echo " "
 echo " > Installing docker."
 sudo yum install -y docker
 echo " > Creating the docker user and group."
-sudo usermod -a -G docker ec2-user
+sudo usermod -a -G docker $LOCAL_USER
 newgrp docker
-echo " > Verifying that the ec2-user can run Docker commands without using sudo."
+echo " > Verifying that the $LOCAL_USER can run Docker commands without using sudo."
 docker ps
 sleep 4
 echo " > Downloading the docker-compose binary."
