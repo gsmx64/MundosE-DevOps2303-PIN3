@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Loading variables from .env file
-source ../.env
+source $PWD/.env
 
 # Instalar Prometheus y Grafana usnado Helm (Manejador de paquetes para kubernetes)
 

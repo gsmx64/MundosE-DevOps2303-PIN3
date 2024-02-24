@@ -1,5 +1,5 @@
 # Loading variables from .env file
-source ../.env
+source $PWD/.env
 
 kubectl create namespace grafana
 

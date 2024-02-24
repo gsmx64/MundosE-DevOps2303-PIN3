@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Loading variables from .env file
-source ../.env
+source $PWD/.env
 
 echo " > Installing docker."
 sudo yum install -y docker

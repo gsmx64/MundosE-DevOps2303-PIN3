@@ -6,7 +6,7 @@
 # AWS_ZONES="us-east-1a,us-east-1b,us-east-1c"
 
 # Loading variables from .env file
-source ../.env
+source $PWD/.env
 
 # Set AWS credentials.
 aws sts get-caller-identity >> /dev/null

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Loading variables from .env file
-source ../.env
+source $PWD/.env
 
 echo " > Download EKS CLI https://github.com/weaveworks/eksctl."
 PLATFORM=$(uname -s)_amd64
