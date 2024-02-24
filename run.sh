@@ -2,7 +2,14 @@
 
 echo "Copying the env file.sample to .env"
 cp .env.sample .env
+echo "---------------------------------------------------------------------"
+echo " "
+echo " > Please fill the .env file with your AWS credentials and settings."
+echo " "
+echo "---------------------------------------------------------------------"
+sleep 6
 nano .env
+sleep 4
 
 echo " > Making the scripts executable."
 chmod +x 01_ec2/ec2_user_data.sh
