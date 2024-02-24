@@ -10,7 +10,8 @@ echo " > Applying execute permissions to the binary."
 chmod +x ./kubectl
 echo " > Copying the binary to a folder in your PATH."
 # Modified to use official steps: mkdir -p $HOME/bin && cp ./kubectl $HOME/bin/kubectl && export PATH=$PATH:$HOME/bin
-mkdir -p $LOCAL_USER_HOME/bin && cp ./kubectl $LOCAL_USER_HOME/bin/kubectl && export PATH=$LOCAL_USER_HOME/bin:$PATH
+mkdir -p $LOCAL_USER_HOME/bin && cp ./kubectl $LOCAL_USER_HOME/bin/kubectl && cp ./kubectl /usr/bin/kubectl && export PATH=$LOCAL_USER_HOME/bin:$PATH
+rm ./kubectl
 echo " > Add the \$LOCAL_USER_HOME/bin path to the shell initialization file."
 echo 'export PATH=$PATH:$LOCAL_USER_HOME/bin' >> ~/.bashrc
 echo " > Verifying the kubectl version."

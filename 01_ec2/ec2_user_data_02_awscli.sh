@@ -8,6 +8,7 @@ echo " > Unzip the downloaded file."
 unzip awscliv2.zip
 echo " > Installing the awscli."
 ./aws/install
+rm awscliv2.zip && rm -r ./aws
 echo " > Verifying the awscli version."
 aws --version
 sleep 4

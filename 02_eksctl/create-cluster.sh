@@ -25,7 +25,7 @@ then
   --nodes $EKSCTL_NODES \
   --node-type $AWS_EC2_INSTANCE \
   --with-oidc \
-  --ssh-access \
+  --ssh-access=true \
   --ssh-public-key $EKSCTL_SSH_PUBLIC_KEY \
   --full-ecr-access
   
