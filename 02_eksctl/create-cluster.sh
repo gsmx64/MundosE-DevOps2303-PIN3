@@ -29,8 +29,7 @@ then
   --ssh-public-key $EKSCTL_SSH_PUBLIC_KEY \
   --full-ecr-access
   
-  # Deploy nginx
-
+  # Deploying nginx
   kubectl apply -f nginx-deployment.yaml
 
   if [ $? -eq 0 ]
