@@ -6,8 +6,8 @@ echo " > Creating the docker user and group."
 sudo usermod -aG docker $USER
 # newgrp docker  # Bug? This cuts the bash script execution.
 echo " > Configuring the Docker daemon to enable state and start on boot."
-systemctl enable docker.service
-systemctl start docker.service
+sudo systemctl enable docker.service
+sudo systemctl start docker.service
 echo " > Verifying that the $USER can run Docker commands without using sudo."
 docker ps
 sleep 4
