@@ -6,6 +6,7 @@ echo " > Applying execute permissions to the installer."
 sudo chmod 700 get_helm.sh
 echo " > Running the installer."
 sudo ./get_helm.sh
+sudo rm ./get_helm.sh
 echo " > Verifying the Helm version."
 helm version | cut -d + -f 1
 sleep 4

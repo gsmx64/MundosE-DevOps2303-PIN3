@@ -12,6 +12,13 @@ sudo yum update -y openssl
 openssl version
 sleep 4
 
+echo "---------------------------------------------------------------------"
+echo " "
+echo " > Please fill the Private Key of AWS EC2 instance:"
+echo " "
+echo "---------------------------------------------------------------------"
+sleep 4
+nano $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem
 echo " > Exporting the SSH key pair."
 cat <<EOF | tee ~/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem > /dev/null
 $AWS_EC2_PEM
