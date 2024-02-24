@@ -5,7 +5,7 @@ source $PWD/.env
 
 echo " > Downloading the kubectl binary."
 # Modified and update from https://s3.us-west-2.amazonaws.com/amazon-eks/1.26.2/2023-03-17/bin/linux/amd64/kubectl
-curl -o kubectl curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.29.0/2024-01-04/bin/linux/amd64/kubectl
+curl -o kubectl curl -O https://s3.us-west-2.amazonaws.com/amazon-eks/1.28.5/2024-01-04/bin/linux/amd64/kubectl
 echo " > Applying execute permissions to the binary."
 chmod +x ./kubectl
 echo " > Copying the binary to a folder in your PATH."
