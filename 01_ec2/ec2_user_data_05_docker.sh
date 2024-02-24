@@ -1,17 +1,14 @@
 #!/bin/bash
 
-# Loading variables from .env file
-source $PWD/.env
-
 echo " > Installing docker."
 yum install -y docker
 echo " > Creating the docker user and group."
-usermod -a -G docker $LOCAL_USER
+usermod -aG docker $USER
 newgrp docker
 echo " > Configuring the Docker daemon to enable state and start on boot."
 systemctl enable docker.service
 systemctl start docker.service
-echo " > Verifying that the $LOCAL_USER can run Docker commands without using sudo."
+echo " > Verifying that the $USER can run Docker commands without using sudo."
 docker ps
 sleep 4
 echo " > Verifying the docker version."
