@@ -4,7 +4,7 @@ echo " > Installing docker."
 yum install -y docker
 echo " > Creating the docker user and group."
 usermod -aG docker $USER
-newgrp docker
+# newgrp docker  # Bug? This cuts the bash script execution.
 echo " > Configuring the Docker daemon to enable state and start on boot."
 systemctl enable docker.service
 systemctl start docker.service
