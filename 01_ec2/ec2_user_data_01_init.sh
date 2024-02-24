@@ -18,11 +18,10 @@ echo " > Please fill the Private Key of AWS EC2 instance:"
 echo " "
 echo "---------------------------------------------------------------------"
 sleep 4
-nano $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem
-echo " > Exporting the SSH key pair."
-cat <<EOF | tee ~/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem > /dev/null
-$AWS_EC2_PEM
-EOF
+sudo rm $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem
+sudo rm $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pub
+sudo nano $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem
+echo " > Exporting the SSH public key."
 ssh-keygen -y -f $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem > $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pub
 sudo chmod 400 $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pem
 sudo chmod 400 $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pub
