@@ -6,13 +6,13 @@ echo "-------------------------------------------------"
 echo " "
 
 echo " > Adding the Helm repository for the AWS EBS CSI driver."
-sudo helm repo add aws-ebs-csi-driver https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+helm repo add aws-ebs-csi-driver https://kubernetes-sigs.github.io/aws-ebs-csi-driver
 
 echo " > Updating the Helm repository."
-sudo helm repo update
+helm repo update
 
 echo " > Installing the latest release of the AWS EBS CSI driver."
-sudo helm upgrade --install aws-ebs-csi-driver \
+helm upgrade --install aws-ebs-csi-driver \
     --namespace kube-system \
     aws-ebs-csi-driver/aws-ebs-csi-driver
 

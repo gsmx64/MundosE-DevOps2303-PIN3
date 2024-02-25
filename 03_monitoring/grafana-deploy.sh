@@ -2,10 +2,10 @@
 source $PWD/.env
 
 echo " > Creating the namespace for Grafana"
-sudo kubectl create namespace grafana
+kubectl create namespace grafana
 
 echo " > Installing Grafana on EKS"
-sudo helm install grafana grafana/grafana \
+helm install grafana grafana/grafana \
     --namespace grafana \
     --set persistence.storageClassName="gp2" \
     --set persistence.enabled=true \
