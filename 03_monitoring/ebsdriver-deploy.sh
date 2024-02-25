@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Loading variables from .env file
+source $PWD/.env
+
 echo "-------------------------------------------------"
 echo " > Setup EBS Driver"
 echo "-------------------------------------------------"
@@ -23,3 +26,23 @@ sleep 4
 echo " > Verifying the storage class."
 kubectl apply -k "github.com/kubernetes-sigs/aws-ebs-csi-driver/deploy/kubernetes/overlays/stable/?ref=release-1.20"
 sleep 4
+
+echo " > Fixing bug with EBS Driver"
+eksctl utils associate-iam-oidc-provider --cluster $EKSCTL_CLUSTER_NAME --region $AWS_REGION --approve
+
+eksctl create iamserviceaccount \
+  --name ebs-csi-controller-sa \
+  --namespace kube-system \
+  --cluster $EKSCTL_CLUSTER_NAME \
+  --attach-policy-arn arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy \
+  --approve \
+  --role-only \
+  --role-name AmazonEKS_EBS_CSI_DriverRole \
+  --region ${AWS_REGION}
+
+eksctl create addon \
+    --name aws-ebs-csi-driver \
+    --cluster $EKSCTL_CLUSTER_NAME \
+    --service-account-role-arn arn:aws:iam::$AWS_ACCOUNT_ID:role/AmazonEKS_EBS_CSI_DriverRole \
+    --region $AWS_REGION \
+    --force

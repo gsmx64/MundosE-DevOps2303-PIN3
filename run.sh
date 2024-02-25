@@ -36,7 +36,7 @@ echo " > Runing EKS scripts."
 sleep 4
 
 echo " > Runing Monitoring scripts."
-./02_eksctl/monitoring.sh
+./03_monitoring/monitoring.sh
 sleep 4
 
 echo "---------------------------------------------------------------------"
