@@ -26,6 +26,20 @@ echo "> Verifying the Prometheus installation"
 kubectl get all -n prometheus
 sleep 4
 
-echo " > Exposing Prometheus on the EC2 instance on port $PROMETHEUS_PUBLIC_PORT (Default: tcp/8080)"
+echo " > Exposing Prometheus on port $PROMETHEUS_PUBLIC_PORT (Default: tcp/8080)"
 kubectl port-forward -n prometheus deploy/prometheus-server $PROMETHEUS_PUBLIC_PORT:9090 --address 0.0.0.0
 sleep 4
+
+# Expose prometheus
+kubectl -n prometheus patch svc deploy/prometheus-server -p '{"spec": {"type": "LoadBalancer"}}'
+
+# Get public domain of prometheus
+PROMETHEUS_PUBLIC_DOMAIN=$(kubectl -n prometheus get svc deploy/prometheus-server | awk '{print $4}' | grep -v 'EXTERNAL-IP')
+
+echo "---------------------------------------------------------------------"
+echo " "
+echo " > The external domain to view Prometheus is:"
+echo " http://$PROMETHEUS_PUBLIC_DOMAIN:$PROMETHEUS_PUBLIC_PORT"
+echo " "
+echo "---------------------------------------------------------------------"
+sleep 10

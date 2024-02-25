@@ -36,13 +36,13 @@ then
   # Expose nginx
   kubectl -n default patch svc nginx-deployment -p '{"spec": {"type": "LoadBalancer"}}'
 
-  # Get External IP of nginx - kubectl -n default get svc nginx-deployment
-  NGINX_EXTERNAL_IP=$(kubectl -n default get svc nginx-deployment | awk '{print $4}' | grep -v 'EXTERNAL-IP')
+  # Get public domain of nginx - kubectl -n default get svc nginx-deployment
+  NGINX_PUBLIC_DOMAIN=$(kubectl -n default get svc nginx-deployment | awk '{print $4}' | grep -v 'EXTERNAL-IP')
 
   echo "---------------------------------------------------------------------"
   echo " "
   echo " > The external domain to view nginx is:"
-  echo " http://$NGINX_EXTERNAL_IP"
+  echo " http://$NGINX_PUBLIC_DOMAIN"
   echo " "
   echo "---------------------------------------------------------------------"
   sleep 10
