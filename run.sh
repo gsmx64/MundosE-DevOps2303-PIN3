@@ -39,6 +39,10 @@ echo " > Runing Monitoring scripts."
 ./03_monitoring/monitoring.sh
 sleep 4
 
+# Loading variables from .env file
+source $PWD/.env
+
+echo " "
 echo "---------------------------------------------------------------------"
 echo " "
 echo " > MundosE PIN3 has finished! - By Gonzalo Mahserdjian"
@@ -49,4 +53,4 @@ echo " > Access to grafana: http://$GRAFANA_PUBLIC_DOMAIN::$GRAFANA_PUBLIC_PORT"
 echo "   Grafana admin password is: $GRAFANA_ADMIN_PASSWORD"
 echo " "
 echo "---------------------------------------------------------------------"
-sleep 4
+sleep 10

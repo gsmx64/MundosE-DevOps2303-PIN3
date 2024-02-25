@@ -38,4 +38,6 @@ echo " "
 echo " Grafana admin password is: $GRAFANA_ADMIN_PASSWORD"
 echo " "
 echo "---------------------------------------------------------------------"
-sleep 10
+sleep 4
+
+export GRAFANA_PUBLIC_DOMAIN

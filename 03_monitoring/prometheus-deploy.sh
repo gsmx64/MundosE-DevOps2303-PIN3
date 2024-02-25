@@ -42,4 +42,6 @@ echo " > The external domain to view Prometheus is:"
 echo " http://$PROMETHEUS_PUBLIC_DOMAIN:$PROMETHEUS_PUBLIC_PORT"
 echo " "
 echo "---------------------------------------------------------------------"
-sleep 10
+sleep 4
+
+export PROMETHEUS_PUBLIC_DOMAIN

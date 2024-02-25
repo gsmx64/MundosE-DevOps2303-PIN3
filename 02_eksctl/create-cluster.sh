@@ -27,7 +27,6 @@ then
   --with-oidc \
   --ssh-access=true \
   --ssh-public-key $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pub \
-  --allow-privileged=true \
   --full-ecr-access
   
   # Deploying nginx
@@ -57,3 +56,5 @@ else
   echo "Please run aws configure & set right credentials."
   echo "Cluster setup failed."
 fi
+
+export NGINX_PUBLIC_DOMAIN
