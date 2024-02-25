@@ -24,10 +24,21 @@ chmod +x 02_eksctl/configmap.sh
 chmod +x 03_monitoring/prometheus-deploy.sh
 chmod +x 03_monitoring/grafana-deploy.sh
 
-echo " > Runing EC2 user data scripts."
+echo " > Runing EC2 scripts."
 ./01_ec2/ec2_user_data.sh
 sleep 4
 
-echo " > Runing EKS user data scripts."
+echo " > Runing EKS scripts."
 ./02_eksctl/create-cluster.sh
+sleep 4
+
+echo " > Runing Monitoring scripts."
+./02_eksctl/monitoring.sh
+sleep 4
+
+echo "---------------------------------------------------------------------"
+echo " "
+echo " > MundosE PIN3 has finished! - By Gonzalo Mahserdjian"
+echo " "
+echo "---------------------------------------------------------------------"
 sleep 4

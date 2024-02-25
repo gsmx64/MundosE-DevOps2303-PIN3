@@ -3,27 +3,29 @@
 # Loading variables from .env file
 source $PWD/.env
 
-# Instalar Prometheus y Grafana usnado Helm (Manejador de paquetes para kubernetes)
+# Install Prometheus and Grafana using Helm (Package manager for kubernetes)
+echo " > Adding the Helm repository for Prometheus."
+sudo helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 
-# Agregar repo de prometheus
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+echo " > Adding the Helm repository for Grafana."
+sudo helm repo add grafana https://grafana.github.io/helm-charts
 
-# Agregar repo de grafana
-helm repo add grafana https://grafana.github.io/helm-charts
+echo " > Updating the Helm repository."
+sudo helm repo update
 
-helm repo update
-# Crear el namespace prometheus
-kubectl create namespace prometheus
+echo " > Creating the namespace for Prometheus"
+sudo kubectl create namespace prometheus
 
-# Desplegar prometheus en EKS
-
-helm install prometheus prometheus-community/prometheus \
+echo " > Installing Prometheus on EKS"
+sudo helm install prometheus prometheus-community/prometheus \
 --namespace prometheus \
 --set alertmanager.persistentVolume.storageClass="gp2" \
 --set server.persistentVolume.storageClass="gp2"
 
-# Verificar la instalación
+echo "> Verifying the Prometheus installation"
 kubectl get all -n prometheus
+sleep 4
 
-# Exponer prometheus en la instancia de EC2 en el puerto 8080
+echo " > Exposing Prometheus on the EC2 instance on port $PROMETHEUS_PUBLIC_PORT (Default: tcp/8080)"
 kubectl port-forward -n prometheus deploy/prometheus-server $PROMETHEUS_PUBLIC_PORT:9090 --address 0.0.0.0
+sleep 4

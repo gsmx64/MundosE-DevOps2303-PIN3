@@ -26,11 +26,26 @@ then
   --node-type $AWS_EC2_INSTANCE \
   --with-oidc \
   --ssh-access=true \
-  --ssh-public-key $EKSCTL_SSH_PUBLIC_KEY \
+  --ssh-public-key $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pub \
+  --allow-privileged=true \
   --full-ecr-access
   
   # Deploying nginx
-  kubectl apply -f nginx-deployment.yaml
+  kubectl apply -f $PWD/02_eksctl/nginx-deployment.yaml
+
+  # Expose nginx
+  kubectl -n default patch svc nginx-deployment -p '{"spec": {"type": "LoadBalancer"}}'
+
+  # Get External IP of nginx - kubectl -n default get svc nginx-deployment
+  NGINX_EXTERNAL_IP=$(kubectl -n default get svc nginx-deployment | awk '{print $4}' | grep -v 'EXTERNAL-IP')
+
+  echo "---------------------------------------------------------------------"
+  echo " "
+  echo " > The external domain to view nginx is:"
+  echo " http://$NGINX_EXTERNAL_IP"
+  echo " "
+  echo "---------------------------------------------------------------------"
+  sleep 10
 
   if [ $? -eq 0 ]
   then
