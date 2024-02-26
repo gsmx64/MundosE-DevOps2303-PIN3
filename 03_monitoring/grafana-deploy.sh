@@ -9,7 +9,9 @@ helm install grafana grafana/grafana \
     --namespace grafana \
     --set persistence.storageClassName="gp2" \
     --set persistence.enabled=true \
-    --set-file provisioningFolder=$PWD/03_monitoring/provisioning:/etc/grafana/provisioning \
+    --set-file $PWD/03_monitoring/provisioning/datasources.yaml:/etc/grafana/provisioning/datasources.yaml \
+    --set-file $PWD/03_monitoring/provisioning/dashboards/dashboard-3119.json:/etc/grafana/provisioning/dashboards/dashboard-3119.json \
+    --set-file $PWD/03_monitoring/provisioning/dashboards/dashboard-6417.json:/etc/grafana/provisioning/dashboards/dashboard-6417.json \
     --set adminPassword=$GRAFANA_ADMIN_PASSWORD \
     --set service.type=LoadBalancer
 
