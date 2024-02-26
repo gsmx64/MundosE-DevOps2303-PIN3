@@ -39,8 +39,11 @@ echo " > Runing Monitoring scripts."
 ./03_monitoring/monitoring.sh
 sleep 4
 
-# Loading variables from .env file
+# Loading variables from files
 source $PWD/.env
+source $PWD/02_eksctl/create-cluster.sh
+source $PWD/03_monitoring/prometheus-deploy.sh
+source $PWD/03_monitoring/grafana-deploy.sh
 
 echo " "
 echo "---------------------------------------------------------------------"

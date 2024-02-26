@@ -11,7 +11,6 @@ helm install grafana grafana/grafana \
     --set persistence.enabled=true \
     --set-file provisioningFolder=$PWD/03_monitoring/provisioning:/etc/grafana/provisioning \
     --set adminPassword=$GRAFANA_ADMIN_PASSWORD \
-    --values $GRAFANA_YAML \
     --set service.type=LoadBalancer
 
 echo "> Verifying the Grafana installation"
