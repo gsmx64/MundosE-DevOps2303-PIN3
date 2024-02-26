@@ -29,6 +29,9 @@ then
   --ssh-public-key $LOCAL_USER_HOME/.ssh/$EKSCTL_SSH_PUBLIC_KEY.pub \
   --full-ecr-access
   
+  # Wait for cluster readiness.
+  kubectl wait --for=condition=Ready nodes --all --timeout=5m
+
   # Deploying nginx
   kubectl apply -f $PWD/02_eksctl/nginx-deployment.yaml
 
