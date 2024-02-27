@@ -29,7 +29,7 @@ kubectl get all -n grafana
 sleep 4
 
 # Patching the service to LoadBalancer
-#kubectl -n grafana patch svc grafana -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl -n grafana patch svc grafana -p '{"spec": {"type": "LoadBalancer"}}'
 
 # Get public domain of grafana
 GRAFANA_PUBLIC_DOMAIN=$(kubectl -n grafana get svc grafana | awk '{print $4}' | grep -v 'EXTERNAL-IP')
