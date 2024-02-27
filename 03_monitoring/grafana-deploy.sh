@@ -5,13 +5,22 @@ echo " > Creating the namespace for Grafana"
 kubectl create namespace grafana
 
 echo " > Installing Grafana on EKS"
+#helm install grafana grafana/grafana \
+#    --namespace grafana \
+#    --set persistence.storageClassName="gp2" \
+#    --set persistence.enabled=true \
+#    --set adminPassword=$GRAFANA_ADMIN_PASSWORD \
+#    --set service.type=LoadBalancer
+
 helm install grafana grafana/grafana \
     --namespace grafana \
     --set persistence.storageClassName="gp2" \
     --set persistence.enabled=true \
-    --set-file $PWD/03_monitoring/provisioning/datasources.yaml:/etc/grafana/provisioning/datasources.yaml \
-    --set-file $PWD/03_monitoring/provisioning/dashboards/dashboard-3119.json:/etc/grafana/provisioning/dashboards/dashboard-3119.json \
-    --set-file $PWD/03_monitoring/provisioning/dashboards/dashboard-6417.json:/etc/grafana/provisioning/dashboards/dashboard-6417.json \
+    --values $PWD/03_monitoring/grafana/deployment.yaml
+    --set-file grafana-datasources=$PWD/03_monitoring/grafana/datasources.yaml \
+    --set-file grafana-providers=$PWD/03_monitoring/grafana/providers.yaml \
+    --set-file grafana-dashboards-3119=$PWD/03_monitoring/grafana/dashboard-3119.json \
+    --set-file grafana-dashboards-6417=$PWD/03_monitoring/grafana/dashboard-6417.json \
     --set adminPassword=$GRAFANA_ADMIN_PASSWORD \
     --set service.type=LoadBalancer
 
