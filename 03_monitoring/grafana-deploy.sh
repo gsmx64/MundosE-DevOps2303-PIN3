@@ -19,8 +19,8 @@ helm install grafana grafana/grafana \
     --values $PWD/03_monitoring/grafana/deployment.yaml \
     --set-file grafana-datasources=$PWD/03_monitoring/grafana/datasources.yaml \
     --set-file grafana-providers=$PWD/03_monitoring/grafana/providers.yaml \
-    --set-file grafana-dashboards-3119=$PWD/03_monitoring/grafana/dashboard-3119.yaml \
-    --set-file grafana-dashboards-6417=$PWD/03_monitoring/grafana/dashboard-6417.yaml \
+    --set-file grafana-dashboards-3119=$PWD/03_monitoring/grafana/dashboards-3119.yaml \
+    --set-file grafana-dashboards-6417=$PWD/03_monitoring/grafana/dashboards-6417.yaml \
     --set adminPassword=$GRAFANA_ADMIN_PASSWORD \
     --set service.type=LoadBalancer
 
