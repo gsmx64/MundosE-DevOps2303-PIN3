@@ -30,7 +30,7 @@ data:
           - targets: 
             - prometheus-prometheus-node-exporter.prometheus.svc.cluster.local:9100
     - honor_labels: true
-      - job_name: 'prometheus-kube-state-metrics'
+      - job_name: "prometheus-kube-state-metrics"
         honor_timestamps: true
         scrape_interval: 1m
         scrape_timeout: 1m
