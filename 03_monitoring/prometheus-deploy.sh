@@ -22,6 +22,10 @@ helm install prometheus prometheus-community/prometheus \
 --set alertmanager.persistentVolume.storageClass="gp2" \
 --set server.persistentVolume.storageClass="gp2"
 
+# Wait to ensure the prometheus is ready.
+echo " > Waiting for prometheus to be ready..."
+sleep 30
+
 echo "> Verifying the Prometheus installation"
 kubectl get all -n prometheus
 sleep 4

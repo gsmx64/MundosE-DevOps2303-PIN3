@@ -35,6 +35,10 @@ then
     # Deploying nginx
     kubectl apply -f $PWD/02_eksctl/nginx-deployment.yaml
 
+    # Wait to ensure the nginx deployment is ready.
+    echo " > Waiting for nginx deployment to be ready..."
+    sleep 30
+
     # Expose nginx on NodePort
     kubectl expose deployment nginx-deployment --port=80 --type=NodePort
 

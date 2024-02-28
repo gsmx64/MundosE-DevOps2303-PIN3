@@ -21,6 +21,7 @@ kubectl delete all -n default --all
 
 echo " > Uninstalling EKS"
 eksctl delete cluster --name $EKSCTL_CLUSTER_NAME
+# helm -n eks-connector uninstall eks-connector
 
 echo " "
 echo "-------------------------------------------------"

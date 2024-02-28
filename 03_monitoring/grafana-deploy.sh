@@ -24,6 +24,10 @@ helm install grafana grafana/grafana \
     --set adminPassword=$GRAFANA_ADMIN_PASSWORD \
     --set service.type=LoadBalancer
 
+# Wait to ensure the grafana is ready.
+echo " > Waiting for grafana to be ready..."
+sleep 20
+
 echo "> Verifying the Grafana installation"
 kubectl get all -n grafana
 sleep 4
