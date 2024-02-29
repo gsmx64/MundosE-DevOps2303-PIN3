@@ -20,7 +20,7 @@ echo " > Uninstalling nginx"
 kubectl delete all -n default --all
 
 echo " > Uninstalling EKS"
-eksctl delete cluster --name $EKSCTL_CLUSTER_NAME
+eksctl delete cluster --name $EKSCTL_CLUSTER_NAME --region $AWS_REGION
 # helm -n eks-connector uninstall eks-connector
 
 echo " "
